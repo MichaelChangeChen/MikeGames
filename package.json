@@ -1,0 +1,29 @@
+{
+  "name": "panda1111",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "serve": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "papaparse": "^5.4.1",
+    "pinia": "^3.0.3",
+    "vue": "^3.5.12",
+    "vue-axios": "^3.5.2",
+    "vue-router": "^4.5.0",
+    "vuetify": "^3.7.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.1.4",
+    "gh-pages": "^6.2.0",
+    "sass": "^1.84.0",
+    "sass-embedded": "^1.80.6",
+    "vite": "^5.4.10"
+  }
+}
