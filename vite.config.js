@@ -13,5 +13,5 @@ export default defineConfig({
   server: {
     port: 8082
   },
-  base: '/',
+  base: '/MikeGames/',
 })
