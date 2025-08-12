@@ -7,25 +7,25 @@ const routes = [
 	{
 		path: '/guessNumberGameTest',
 		name: 'guessNumberGameTest',
-		component: () => import('@/pages/guessNumberGame/guessNumberGameTest.vue'),
+		component: () => import('@/pages/guessNumberGame/GuessNumberGameTest.vue'),
 		meta: {}
 	},
 	{
 		path: '/guessNumberGame',
 		name: 'guessNumberGame',
-		component: () => import('@/pages/guessNumberGame/guessNumberGame.vue'),
+		component: () => import('@/pages/guessNumberGame/GuessNumberGame.vue'),
 		meta: {}
 	},
 	{
 		path: '/guessNumberGame/old',
 		name: 'guessNumberGameOld',
-		component: () => import('@/pages/guessNumberGame/guessNumberGame_old.vue'),
+		component: () => import('@/pages/guessNumberGame/GuessNumberGame_old.vue'),
 		meta: {}
 	},
 	{
 		path: '/guessNumberGame5',
 		name: 'guessNumberGame5',
-		component: () => import('@/pages/guessNumberGame/guessNumberGame5.vue'),
+		component: () => import('@/pages/guessNumberGame/GuessNumberGame5.vue'),
 		meta: {}
 	},
 ];
