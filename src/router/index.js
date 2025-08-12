@@ -5,27 +5,21 @@ const routes = [
 		component: () => import('@/pages/home/Home.vue'),
 	},
 	{
-		path: '/guessNumberGameTest',
-		name: 'guessNumberGameTest',
-		component: () => import('@/pages/guessNumberGame/GuessNumberGameTest.vue'),
+		path: '/daVinciCdoe',
+		name: 'daVinciCdoe',
+		component: () => import('@/pages/daVinciCdoe/DaVinciCdoe.vue'),
 		meta: {}
 	},
 	{
-		path: '/guessNumberGame',
-		name: 'guessNumberGame',
-		component: () => import('@/pages/guessNumberGame/GuessNumberGame.vue'),
+		path: '/daVinciCdoeTest',
+		name: 'daVinciCdoeTest',
+		component: () => import('@/pages/daVinciCdoe/DaVinciCdoeTest.vue'),
 		meta: {}
 	},
 	{
-		path: '/guessNumberGame/old',
-		name: 'guessNumberGameOld',
-		component: () => import('@/pages/guessNumberGame/GuessNumberGame_old.vue'),
-		meta: {}
-	},
-	{
-		path: '/guessNumberGame5',
-		name: 'guessNumberGame5',
-		component: () => import('@/pages/guessNumberGame/GuessNumberGame5.vue'),
+		path: '/daVinciCdoeOld',
+		name: 'daVinciCdoeOld',
+		component: () => import('@/pages/daVinciCdoe/daVinciCdoeOld.vue'),
 		meta: {}
 	},
 ];

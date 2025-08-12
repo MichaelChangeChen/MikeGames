@@ -1,7 +1,7 @@
 import { guessGame, resetGame } from '@/api/getApi';
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 
-const guessNumberGameOld = () => {
+const daVinciCdoeOld = () => {
 	const 	bigRadius = ref(250), 			// 大圓半徑
 			smallRadius = ref(15), 			// 小圓半徑
 			smallCircleCount = ref(0), 		// 小圓數量
@@ -268,6 +268,6 @@ const guessNumberGameOld = () => {
 	};
 };
 
-export default guessNumberGameOld;
+export default daVinciCdoeOld;
 
 

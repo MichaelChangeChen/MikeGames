@@ -16,7 +16,7 @@
 	</div>
 </template>
 
-<script src="@/js/guessNumberGame/guessNumberGameTest.js"/>
+<script src="@/js/daVinciCdoe/daVinciCdoeTest.js"/>
 
 <style lang="scss" scoped>
 	@use "@/css/guessNumberGame/guess-number-game.scss";

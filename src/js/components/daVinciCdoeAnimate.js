@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 
-const guessAnimate = () => {
+const daVinciCdoeAnimate = () => {
 	const 	open = ref(false),
 			message = ref(null);
 	const check = (msg) => {
@@ -20,4 +20,4 @@ const guessAnimate = () => {
 	};
 };
 
-export default guessAnimate;
+export default daVinciCdoeAnimate;

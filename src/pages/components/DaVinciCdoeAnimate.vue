@@ -1,5 +1,5 @@
 <template>
-	<div v-if="open" class="guess-animate">
+	<div v-if="open" class="da-vinci-cdoe-animate">
 		<div class="block-track">
 			<div class="block-box">
 				<div class="block"/>
@@ -29,15 +29,15 @@
 </template>
 
 <script setup>
-	import guessAnimate from '@/js/components/guessAnimate.js';
+	import daVinciCdoeAnimate from '@/js/components/daVinciCdoeAnimate.js';
 	import { defineExpose } from 'vue';
 
-	const { open, check, message } = guessAnimate();
+	const { open, check, message } = daVinciCdoeAnimate();
 	defineExpose({check})
 </script>
 
 <style lang="scss" scoped>
-	.guess-animate{
+	.da-vinci-cdoe-animate {
 		position: absolute;
 		top: 0;
 		bottom: 0;

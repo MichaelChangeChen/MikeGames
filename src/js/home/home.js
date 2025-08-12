@@ -11,7 +11,7 @@ const home = () => {
 	const start = () => {
 		loadingSwitch();
 		setTimeout(() => {
-			router.push('/guessNumberGame');
+			router.push('/daVinciCdoe');
 			loadingSwitch();
 		}, 6000);
 	}

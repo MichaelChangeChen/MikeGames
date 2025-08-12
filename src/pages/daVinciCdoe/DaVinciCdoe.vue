@@ -1,5 +1,5 @@
 <template>
-	<div class="gng-3">
+	<div class="da-vinci-cdoe">
 		<!-- <div class="score-box">
 			<div class="score best">BEST SCORE: {{ 'qweqwe' }}</div>
 			<div class="score best">BEST SCORE ID: {{ 'asdasdasd' }}</div>
@@ -17,25 +17,25 @@
 			<div v-if="tips" :class="`tips ${guessTime > 5 ? 'danger' : ''}`">{{ tips }}</div>
 		</div>
 
-		<GuessAnimate ref="guessAnimate" />
+		<DaVinciCdoeAnimate ref="daVinciCdoeAnimate" />
 	</div>
 </template>
 
 <script setup>
-	import guessNumberGame from '@/js/guessNumberGame/guessNumberGame.js';
-	import GuessAnimate from '@/pages/components/GuessAnimate.vue';
+	import daVinciCdoe from '@/js/daVinciCdoe/daVinciCdoe.js';
+	import DaVinciCdoeAnimate from '@/pages/components/DaVinciCdoeAnimate.vue';
 	const {
-		guessAnimate,
+		daVinciCdoeAnimate,
 		canvasSize,
 		canvasRef,
 		guessTime,
 		tips,
 		reset
-	} = guessNumberGame();
+	} = daVinciCdoe();
 </script>
 
 <style lang="scss" scoped>
-.gng-3 {
+.da-vinci-cdoe {
 	width: 100%;
 	height: 100%;
 	background-color:rgb(10, 10, 10);

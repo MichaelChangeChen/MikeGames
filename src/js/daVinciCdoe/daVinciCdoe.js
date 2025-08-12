@@ -1,11 +1,11 @@
 import { guessGame, resetGame } from '@/api/getApi';
 import { ref, onMounted, onUnmounted } from 'vue';
 
-const guessNumberGame = () => {
+const daVinciCdoe = () => {
 	const 	canvasSize = ref(500),				// 畫布大小為
 		 	canvasRef = ref(null),
 		 	guessTime = ref(null),
-		 	guessAnimate = ref(null),
+		 	daVinciCdoeAnimate = ref(null),
 		 	tips = ref(null),
 			smallRadius = 15,					// 小球半徑
 			bigRadius = canvasSize.value / 2,	// 大圓半徑 ,畫布一半（圓形容器）
@@ -125,7 +125,7 @@ const guessNumberGame = () => {
 						guessTime.value = res.data.guess_time;
 						tips.value = res.data.tips;
 
-						guessAnimate.value.check(res.data.message);
+						daVinciCdoeAnimate.value.check(res.data.message);
 						initBalls();
 					}
 					else
@@ -146,7 +146,7 @@ const guessNumberGame = () => {
 							ballBox = [];
 
 
-						guessAnimate.value.check(res.data.message);
+						daVinciCdoeAnimate.value.check(res.data.message);
 						tips.value = res.data.tips;
 						guessTime.value = res.data.guess_time;
 					}
@@ -293,7 +293,7 @@ const guessNumberGame = () => {
 	});
 
 	return {
-		guessAnimate,
+		daVinciCdoeAnimate,
 		canvasSize,
 		canvasRef,
 		guessTime,
@@ -302,4 +302,4 @@ const guessNumberGame = () => {
 	};
 };
 
-export default guessNumberGame;
+export default daVinciCdoe;

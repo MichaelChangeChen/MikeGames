@@ -38,13 +38,13 @@
 </template>
 
 <script setup>
-	import guessNumberGameOld from '@/js/guessNumberGame/guessNumberGame_old.js';
+	import daVinciCdoeOld from '@/js/daVinciCdoe/daVinciCdoeOld.js';
 	const {
 		bigRadius,
 		smallRadius,
 		smallCircles,
 		selectNumber
-	} = guessNumberGameOld();
+	} = daVinciCdoeOld();
 </script>
 
 <style lang="scss" scoped>
