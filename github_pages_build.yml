@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Say hello
+        run: echo "Hello, GitHub Actions!"
+
       - name: 取得程式碼
         uses: actions/checkout@v3
 
