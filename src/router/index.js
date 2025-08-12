@@ -30,7 +30,7 @@ const routes = [
 	},
 ];
 const router = createRouter({
-	history: createWebHistory('/MikeGames/'),
+	history: createWebHistory(),
 	routes
 });
 export default router;
