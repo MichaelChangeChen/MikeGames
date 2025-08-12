@@ -1,0 +1,31 @@
+name: Deploy Vue to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # 只在 main 分支觸發
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 取得程式碼
+        uses: actions/checkout@v3
+
+      - name: 安裝 Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: 安裝套件
+        run: npm install
+
+      - name: 打包
+        run: npm run build
+
+      - name: 部署到GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: $({ secrets.GITHUB_TOKEN })
+          publish_dir: ./dist
