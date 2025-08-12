@@ -19,7 +19,7 @@ const routes = [
 	{
 		path: '/daVinciCdoeOld',
 		name: 'daVinciCdoeOld',
-		component: () => import('@/pages/daVinciCdoe/daVinciCdoeOld.vue'),
+		component: () => import('@/pages/daVinciCdoe/DaVinciCdoeOld.vue'),
 		meta: {}
 	},
 ];
