@@ -1,1 +1,0 @@
-import{l as e}from"./index-CsY9p7NK.js";e.defaults.timeout=6e4;const t=e.create({baseURL:window.location.hostname==="127.0.0.1"?"http://127.0.0.1:8000":"https://pythonbackend-davincicode.onrender.com"}),a=s=>t.post("/guessGame",s),n=()=>t.get("/resetGame");export{a as g,n as r};
