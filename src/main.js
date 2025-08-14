@@ -14,11 +14,20 @@ import { createPinia } from 'pinia';
 // Vuetify
 import 'vuetify/styles';
 import { createVuetify } from 'vuetify';
+import { aliases, md } from 'vuetify/iconsets/md'
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
 const vuetify = createVuetify({
 	components,
-	directives
+	directives,
+	icons: {
+		defaultSet: 'md',
+		aliases,
+		sets: {
+			md,
+		},
+	},
 });
 const app = createApp(App);
 app.provide('router', router); // 提供 router

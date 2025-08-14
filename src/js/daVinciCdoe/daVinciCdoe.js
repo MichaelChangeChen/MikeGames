@@ -1,12 +1,18 @@
-import { guessGame, resetGame } from '@/api/getApi';
+import { useRouter } from 'vue-router';
+import useStore from '@/stores/useStores.js';
 import { ref, onMounted, onUnmounted } from 'vue';
+import { guessGame, resetGame, saveRecord, getScore } from '@/api/getApi';
 
 const daVinciCdoe = () => {
-	const 	canvasSize = ref(500),				// 畫布大小為
+	const 	store = useStore(),
+			router = useRouter(),
+			canvasSize = ref(500),				// 畫布大小為
 		 	canvasRef = ref(null),
 		 	guessTime = ref(null),
+		 	bestScroe = ref({}),
 		 	daVinciCdoeAnimate = ref(null),
 		 	tips = ref(null),
+		 	playerName = ref(null),
 			smallRadius = 15,					// 小球半徑
 			bigRadius = canvasSize.value / 2,	// 大圓半徑 ,畫布一半（圓形容器）
 			gravity = 0.3,						// 重力加速度
@@ -124,9 +130,40 @@ const daVinciCdoe = () => {
 						ballCount = res.data.max_num;
 						guessTime.value = res.data.guess_time;
 						tips.value = res.data.tips;
-
+						bestScroe.value = res.data.best_time;
 						daVinciCdoeAnimate.value.check(res.data.message);
 						initBalls();
+					}
+					else
+						console.log('連線出現問題~');
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+			},
+			getBestScore = () => {
+				getScore()
+				.then((res) => {
+					if(res.data.statusCode === 1) {
+						console.log(res.data);
+
+					}
+					else
+						console.log('連線出現問題~');
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+			},
+			save = () => {
+				let param = { 	name: playerName.value,
+								guess_time: guessTime.value };
+				saveRecord(param)
+				.then((res) => {
+					if(res.data.statusCode === 1) {
+
+							console.log(2424);
+
 					}
 					else
 						console.log('連線出現問題~');
@@ -141,9 +178,10 @@ const daVinciCdoe = () => {
 					if(res.data.statusCode === 1) {
 						if(res.data.status === 'safe')
 							ballBox = ballBox.filter(e => e.id < res.data.max_num && res.data.min_num < e.id);
-
-						if(res.data.status === 'boom')
+						else if(res.data.status === 'boom') {
+							save();
 							ballBox = [];
+						};
 
 
 						daVinciCdoeAnimate.value.check(res.data.message);
@@ -260,7 +298,7 @@ const daVinciCdoe = () => {
 					};
 				};
 			},
-			handleMouseUp = (e) => {
+			handleMouseUp = () => {
 				if(dragBall)
 					dragBall = null;
 			},
@@ -277,9 +315,13 @@ const daVinciCdoe = () => {
 			};
 
 	onMounted(() => {
+		if(!store.getData)
+			return router.push('/');
+
+		playerName.value = store.getData;
 		animate();
 		reset();
-
+		getBestScore();
 		// 滑鼠移動事件：改變指標樣式
 		canvasRef.value.addEventListener('mousemove', handleMouseMove);
 		canvasRef.value.addEventListener('mousedown', handleMouseDown);
@@ -297,6 +339,8 @@ const daVinciCdoe = () => {
 		canvasSize,
 		canvasRef,
 		guessTime,
+		playerName,
+		bestScroe,
 		tips,
 		reset
 	};
