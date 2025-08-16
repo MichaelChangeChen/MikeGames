@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { useRouter } from 'vue-router';
 import useStore from '@/stores/useStores.js';
 import { ref, onMounted, onUnmounted } from 'vue';
@@ -8,8 +9,9 @@ const daVinciCdoe = () => {
 			router = useRouter(),
 			canvasSize = ref(500),				// 畫布大小為
 		 	canvasRef = ref(null),
-		 	guessTime = ref(null),
+		 	guessTime = ref(0),
 		 	bestScroe = ref({}),
+		 	scoreList = ref([]),
 		 	daVinciCdoeAnimate = ref(null),
 		 	tips = ref(null),
 		 	playerName = ref(null),
@@ -130,7 +132,6 @@ const daVinciCdoe = () => {
 						ballCount = res.data.max_num;
 						guessTime.value = res.data.guess_time;
 						tips.value = res.data.tips;
-						bestScroe.value = res.data.best_time;
 						daVinciCdoeAnimate.value.check(res.data.message);
 						initBalls();
 					}
@@ -146,7 +147,8 @@ const daVinciCdoe = () => {
 				.then((res) => {
 					if(res.data.statusCode === 1) {
 						console.log(res.data);
-
+						bestScroe.value = res.data.best_time;
+						scoreList.value = res.data.score_list;
 					}
 					else
 						console.log('連線出現問題~');
@@ -195,6 +197,10 @@ const daVinciCdoe = () => {
 				.catch((err) => {
 					console.log(err);
 				});
+			},
+			checkDate = (date) => {
+				if(date)
+					return moment(new Date(date)).format('YYYY/MM/DD');
 			},
 			// 初始化所有小球位置
 			initBalls = async() => {
@@ -341,6 +347,8 @@ const daVinciCdoe = () => {
 		guessTime,
 		playerName,
 		bestScroe,
+		scoreList,
+		checkDate,
 		tips,
 		reset
 	};

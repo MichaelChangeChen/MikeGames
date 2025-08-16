@@ -3,9 +3,13 @@
 		<div class="left-section">
 			<v-card class="score-box-card">
 				<div class="score-box">
-					<div class="score best">1. {{ 'qweqwe' }}</div>
-					<div class="score best">2. {{ 'ggdd' }}</div>
-					<div class="score best">3. {{ 'ccxxcvb' }}</div>
+					<div
+						v-for="(list, index) in scoreList"
+						:key="list.id"
+						class="d-flex justify-space-between align-end">
+						{{ `${index + 1}. ${list.name}` }}
+						<span class="date">{{ checkDate(list.play_date) }}</span>
+					</div>
 				</div>
 			</v-card>
 		</div>
@@ -19,7 +23,7 @@
 					class="canv" />
 			</div>
 			<div class="detail">
-				<span class="your-time">{{ playerName }}: {{ guessTime }}</span>
+				<span class="your-time">{{ playerName }} TRIED: {{ guessTime }}</span>
 				<div v-if="tips" :class="`tips ${guessTime > 5 ? 'danger' : ''}`">{{ tips }}</div>
 			</div>
 		</div>
@@ -46,6 +50,8 @@
 		guessTime,
 		playerName,
 		bestScroe,
+		scoreList,
+		checkDate,
 		tips,
 		reset
 	} = daVinciCdoe();
@@ -83,6 +89,9 @@
 			font-size: 14px;
 			:hover {
 				background-color:rgba(73, 73, 73, 0.5);
+			}
+			.date {
+				font-size: 8px;
 			}
 		}
 		&:hover {

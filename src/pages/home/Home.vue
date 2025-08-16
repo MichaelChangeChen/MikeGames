@@ -13,13 +13,14 @@
 				:messages="message"
 				:disabled="isShow"
 				:loading="isloading"
-				class="name"
-				variant="outlined"
 				placeholder="Enter Your Name"
+				variant="outlined"
+				autocomplete="off"
+				class="name"
 				clearable/>
 			<div class="d-flex justify-space-between ga-2">
 				<v-btn
-					:disabled="isShow || !name"
+					:disabled="isShow || isloading || !name"
 					@click="checkUserName"
 					class="flex-grow-1"
 					variant="outlined"
@@ -54,6 +55,7 @@
 
 <style lang="scss" scoped>
 .index {
+	user-select: none;
 	width: 100%;
 	height: 100%;
 	background-color: black;

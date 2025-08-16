@@ -53,6 +53,7 @@
 
 <style lang="scss" scoped>
 	.loading {
+		user-select: none;
 		opacity: 0;
 		position: absolute;
 		top: 0;
@@ -69,9 +70,9 @@
 			right: 0;
 			text-align: center;
 			color: rgba(255, 255, 255, 0.8);
-			text-shadow: 5px 5px 20px rgb(120, 120, 120);
+			text-shadow: 5px 5px 20px rgb(73, 73, 73);
 			font-family: 'Bitcount_Roman';
-			font-size: 40px;
+			font-size: 60px;
 			font-weight: bolder;
 			transition: opacity .8s 3s ease-in-out;
 			animation: loading 1s infinite linear;

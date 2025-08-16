@@ -31,7 +31,7 @@ const loading = (isOpen) => {
 					y: 50,
 					vx: 0,
 					vy: 0,
-					color: `hsl(${(Math.random() - 1) * Math.random() * 360}, 75%, 70%)`,
+					color: `hsl(${(Math.random() - 1) * Math.random() * 360}, 75%, 60%)`,
 					settled: false,
 				});
 				updateCircles(smallCircles.value);
