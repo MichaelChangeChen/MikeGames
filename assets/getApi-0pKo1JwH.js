@@ -1,0 +1,1 @@
+import{q as t}from"./index-MMec5jZy.js";t.defaults.timeout=6e4;const s=t.create({baseURL:"http://127.0.0.1:8000"}),o=()=>s.get("/resetGame"),c=()=>s.get("/getScore"),r=e=>s.post("/guessGame",e),m=e=>s.post("/saveRecord",e),g=e=>s.post("/checkName",e);export{r as a,g as c,c as g,o as r,m as s};
