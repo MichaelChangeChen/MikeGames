@@ -27,12 +27,9 @@ const home = () => {
 					if(res.data.statusCode === 1) {
 						isShow.value = true;
 						store.getData = name;
-						console.log(333,res);
-						console.log(111,store.getData);
 
 					};
 
-						console.log(222,isloading.value);
 					isloading.value = false;
 					message.value = res.data.message;
 				}).catch(err => {});

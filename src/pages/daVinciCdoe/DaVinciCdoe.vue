@@ -7,7 +7,7 @@
 						v-for="(list, index) in scoreList"
 						:key="list.id"
 						class="d-flex justify-space-between align-end">
-						{{ `${index + 1}. ${list.name}` }}
+						{{ `${index + 1}. ${list.name} (${list.guess_time})` }}
 						<span class="date">{{ checkDate(list.play_date) }}</span>
 					</div>
 				</div>
@@ -37,14 +37,17 @@
 		</div>
 
 		<DaVinciCdoeAnimate ref="daVinciCdoeAnimate" />
+		<GameOver ref="gameOver" />
 	</div>
 </template>
 
 <script setup>
 	import daVinciCdoe from '@/js/daVinciCdoe/daVinciCdoe.js';
 	import DaVinciCdoeAnimate from '@/pages/components/DaVinciCdoeAnimate.vue';
+	import GameOver from '@/pages/components/GameOver.vue';
 	const {
 		daVinciCdoeAnimate,
+		gameOver,
 		canvasSize,
 		canvasRef,
 		guessTime,
@@ -91,6 +94,7 @@
 				background-color:rgba(73, 73, 73, 0.5);
 			}
 			.date {
+				margin-left: 10px;
 				font-size: 8px;
 			}
 		}

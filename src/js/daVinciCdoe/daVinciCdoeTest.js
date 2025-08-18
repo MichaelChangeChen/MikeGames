@@ -14,7 +14,6 @@ export default {
 	},
 	methods: {
 		selectNumber(num) {
-			console.log(num);
 			this.makeGuess(num);
 		},
 		generateCircles() {
@@ -26,7 +25,6 @@ export default {
 			guessGame({ guess: num })
 			.then((res) => {
 				if(res.data.statusCode === 1) {
-					console.log(res);
 					if(res.data.status === 'wrong')
 						this.numList = this.numList.filter(e => e.number < res.data.max_num && res.data.min_num < e.number);
 					if(res.data.status === 'correct')
@@ -44,7 +42,6 @@ export default {
 			resetGame()
 			.then((res) => {
 				if(res.data.statusCode === 1) {
-					console.log(res);
 					this.numList = [];
 					this.maxNum = res.data.max_num;
 					this.generateCircles();

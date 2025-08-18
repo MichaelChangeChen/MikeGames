@@ -13,6 +13,7 @@ const daVinciCdoe = () => {
 		 	bestScroe = ref({}),
 		 	scoreList = ref([]),
 		 	daVinciCdoeAnimate = ref(null),
+		 	gameOver = ref(null),
 		 	tips = ref(null),
 		 	playerName = ref(null),
 			smallRadius = 15,					// 小球半徑
@@ -21,7 +22,10 @@ const daVinciCdoe = () => {
 			friction = 0.98,					// 摩擦力（使速度逐漸降低）
 			bounce = 0.9;						// 邊界彈性係數（撞牆後反彈程度）
 
-	let	animationId = null,
+	let lastMouseX = 0,
+		lastMouseY = 0,
+		lastMoveTime = 0,
+		animationId = null,
 		dragBall = null,
 		offsetX = 0,
 		offsetY = 0,
@@ -146,7 +150,6 @@ const daVinciCdoe = () => {
 				getScore()
 				.then((res) => {
 					if(res.data.statusCode === 1) {
-						console.log(res.data);
 						bestScroe.value = res.data.best_time;
 						scoreList.value = res.data.score_list;
 					}
@@ -162,11 +165,8 @@ const daVinciCdoe = () => {
 								guess_time: guessTime.value };
 				saveRecord(param)
 				.then((res) => {
-					if(res.data.statusCode === 1) {
-
-							console.log(2424);
-
-					}
+					if(res.data.statusCode === 1)
+						console.log('SAVED!!');
 					else
 						console.log('連線出現問題~');
 				})
@@ -178,17 +178,19 @@ const daVinciCdoe = () => {
 				guessGame({ guess: num })
 				.then((res) => {
 					if(res.data.statusCode === 1) {
-						if(res.data.status === 'safe')
+						guessTime.value = res.data.guess_time;
+
+						if(res.data.status === 'safe') {
+							tips.value = res.data.tips;
 							ballBox = ballBox.filter(e => e.id < res.data.max_num && res.data.min_num < e.id);
+						}
 						else if(res.data.status === 'boom') {
 							save();
+							gameOver.value.check(res.data.tips, guessTime.value > (bestScroe.value?.guess_time || 0));
 							ballBox = [];
 						};
 
-
 						daVinciCdoeAnimate.value.check(res.data.message);
-						tips.value = res.data.tips;
-						guessTime.value = res.data.guess_time;
 					}
 					else {
 						console.log('連線出現問題~');
@@ -271,7 +273,8 @@ const daVinciCdoe = () => {
 				};
 			},
 			handleMouseMove = (e) => {
-				const { x, y } = getMousePos(e);
+				const 	{ x, y } = getMousePos(e),
+						now = performance.now();
 				// 改變 cursor
 				let isHover = false;
 				for(const ball of ballBox) {
@@ -283,13 +286,26 @@ const daVinciCdoe = () => {
 					};
 				};
 				canvasRef.value.style.cursor = dragBall ? 'grabbing' : isHover ? 'pointer' : 'default';
+
 				// 如果正在拖曳某個球 → 更新其位置
 				if(dragBall) {
+					// 計算滑鼠速度
+					const dt = (now - lastMoveTime) / 1000; // 秒
+
+					if(dt > 0) {
+						const smooth = 0.1; // 越小越平滑
+						dragBall.vx = dragBall.vx * (1 - smooth) + ((x - lastMouseX) / dt) * smooth * 0.05;  // 加個縮放避免太快
+						dragBall.vy = dragBall.vy * (1 - smooth) + ((y - lastMouseY) / dt) * smooth * 0.05;
+					};
+
+					// 讓球跟著滑鼠走（扣掉 offset）
 					dragBall.x = x - offsetX;
 					dragBall.y = y - offsetY;
-					dragBall.vx = 0; // 拖曳中不受速度影響
-					dragBall.vy = 0;
 				};
+
+				lastMouseX = x;
+				lastMouseY = y;
+				lastMoveTime = now;
 			},
 			handleMouseDown = (e) => {
 				const { x, y } = getMousePos(e);
@@ -305,6 +321,7 @@ const daVinciCdoe = () => {
 				};
 			},
 			handleMouseUp = () => {
+				// 放手後保留剛才算好的 vx, vy
 				if(dragBall)
 					dragBall = null;
 			},
@@ -349,6 +366,7 @@ const daVinciCdoe = () => {
 		bestScroe,
 		scoreList,
 		checkDate,
+		gameOver,
 		tips,
 		reset
 	};
