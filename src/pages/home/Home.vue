@@ -11,8 +11,9 @@
 			<v-text-field
 				v-model="name"
 				:messages="message"
-				:disabled="isShow"
+				:disabled="isShow || isloading"
 				:loading="isloading"
+				@keyup.enter="checkUserName"
 				placeholder="Enter Your Name"
 				variant="outlined"
 				autocomplete="off"
