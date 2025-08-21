@@ -94,6 +94,7 @@
 		}
 	}
 	.input-box {
+		width: 300px;
 		position: absolute;
 		top: 60vh;
 		display: flex;
