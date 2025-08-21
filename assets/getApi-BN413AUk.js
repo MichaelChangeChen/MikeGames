@@ -1,1 +1,0 @@
-import{v as t}from"./index-D7Uxt_NJ.js";t.defaults.timeout=6e4;const s=t.create({baseURL:"https://pythonbackend-davincicode.onrender.com"}),a=()=>s.get("/resetGame"),c=()=>s.get("/getScore"),r=e=>s.post("/guessGame",e),n=e=>s.post("/saveRecord",e),m=e=>s.post("/checkName",e);export{r as a,m as c,c as g,a as r,n as s};
