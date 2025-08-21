@@ -100,7 +100,6 @@
 		flex-direction: column;
 		gap: 30px;
 		.name {
-			width: 250px;
 			max-height: 50px;
 			:deep(.v-input__control) {
 				color: rgb(255, 240, 198);
