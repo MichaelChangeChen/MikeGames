@@ -32,7 +32,11 @@ const home = () => {
 
 					isloading.value = false;
 					message.value = res.data.message;
-				}).catch(err => {});
+				}).catch(err => {
+					console.log(err);
+					isloading.value = false;
+					message.value = 'Please check your network is available';
+				});
 			},
 			clearName = () => {
 				isShow.value = false;

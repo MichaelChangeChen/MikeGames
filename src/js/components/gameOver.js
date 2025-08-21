@@ -30,8 +30,6 @@ const gameOver = () => {
 			goMainPage	= () => {
 				router.push('/');
 			};
-
-					scroeText.value = scroeList[Math.random() * 10];
 	return {
 		open,
 		check,
