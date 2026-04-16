@@ -37,15 +37,7 @@
 	</div>
 </template>
 
-<script setup>
-	import daVinciCdoeOld from '@/js/daVinciCdoe/daVinciCdoeOld.js';
-	const {
-		bigRadius,
-		smallRadius,
-		smallCircles,
-		selectNumber
-	} = daVinciCdoeOld();
-</script>
+<script src="@/js/daVinciCdoe/daVinciCdoeOld.js"></script>
 
 <style lang="scss" scoped>
 .circle-container {

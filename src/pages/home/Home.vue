@@ -41,18 +41,7 @@
 	</div>
 </template>
 
-<script setup>
-	import home from '@/js/home/home.js';
-
-	const {
-		name,
-		start,
-		isShow,
-		message,
-		isloading,
-		clearName,
-		checkUserName, } = home();
-</script>
+<script src="@/js/home/home.js"></script>
 
 <style lang="scss" scoped>
 .index {

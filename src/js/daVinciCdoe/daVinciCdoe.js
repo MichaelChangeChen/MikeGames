@@ -1,10 +1,18 @@
 import moment from 'moment';
+import { defineComponent, onMounted, onUnmounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import useStore from '@/stores/useStores.js';
-import { ref, onMounted, onUnmounted } from 'vue';
 import { guessGame, resetGame, saveRecord, getScore } from '@/api/getApi';
+import DaVinciCdoeAnimate from '@/pages/components/DaVinciCdoeAnimate.vue';
+import GameOver from '@/pages/components/GameOver.vue';
 
-const daVinciCdoe = () => {
+export default defineComponent({
+	name: 'DaVinciCdoe',
+	components: {
+		DaVinciCdoeAnimate,
+		GameOver
+	},
+	setup() {
 	const 	store = useStore(),
 			router = useRouter(),
 			canvasSize = ref(500),				// 畫布大小為
@@ -370,6 +378,5 @@ const daVinciCdoe = () => {
 		tips,
 		reset
 	};
-};
-
-export default daVinciCdoe;
+	}
+});

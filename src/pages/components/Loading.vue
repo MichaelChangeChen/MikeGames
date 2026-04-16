@@ -27,29 +27,7 @@
 	</div>
 </template>
 
-<script setup>
-	import loading from '@/js/components/loading.js';
-	import { defineProps, computed } from 'vue';
-
-	const { isOpen: _isOpen } = defineProps({
-		isOpen: {
-			type: Boolean,
-			required: true
-		}
-	});
-
-	const isOpen = computed(() => _isOpen);
-
-	const {
-		smallRadius,
-		smallCircles,
-		checkOpenClass,
-		loadingText,
-		loadingShow,
-		topBgc,
-		bootomBgc
-	} = loading(isOpen);
-</script>
+<script src="@/js/components/loading.js"></script>
 
 <style lang="scss" scoped>
 	.loading {

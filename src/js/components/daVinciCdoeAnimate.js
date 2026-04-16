@@ -1,23 +1,26 @@
-import { ref } from 'vue';
+import { defineComponent, ref } from 'vue';
 
-const daVinciCdoeAnimate = () => {
-	const 	open = ref(false),
-			message = ref(null);
-	const check = (msg) => {
-		message.value = msg;
-		open.value = !open.value;
-		setTimeout(() => {
+export default defineComponent({
+	name: 'DaVinciCdoeAnimate',
+	setup(props, { expose }) {
+		const open = ref(false);
+		const message = ref(null);
+
+		const check = (msg) => {
+			message.value = msg;
 			open.value = !open.value;
-			message.value = null;
-		}, 1800)
+			setTimeout(() => {
+				open.value = !open.value;
+				message.value = null;
+			}, 1800);
+		};
+
+		expose({ check });
+
+		return {
+			open,
+			check,
+			message
+		};
 	}
-
-
-	return {
-		open,
-		check,
-		message
-	};
-};
-
-export default daVinciCdoeAnimate;
+});

@@ -41,24 +41,7 @@
 	</div>
 </template>
 
-<script setup>
-	import daVinciCdoe from '@/js/daVinciCdoe/daVinciCdoe.js';
-	import DaVinciCdoeAnimate from '@/pages/components/DaVinciCdoeAnimate.vue';
-	import GameOver from '@/pages/components/GameOver.vue';
-	const {
-		daVinciCdoeAnimate,
-		gameOver,
-		canvasSize,
-		canvasRef,
-		guessTime,
-		playerName,
-		bestScroe,
-		scoreList,
-		checkDate,
-		tips,
-		reset
-	} = daVinciCdoe();
-</script>
+<script src="@/js/daVinciCdoe/daVinciCdoe.js"></script>
 
 <style lang="scss" scoped>
 .da-vinci-cdoe {

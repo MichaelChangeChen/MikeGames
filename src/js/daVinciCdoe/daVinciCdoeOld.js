@@ -1,15 +1,17 @@
 import { guessGame, resetGame } from '@/api/getApi';
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue';
 
-const daVinciCdoeOld = () => {
-	const 	bigRadius = ref(250), 			// 大圓半徑
-			smallRadius = ref(15), 			// 小圓半徑
-			smallCircleCount = ref(0), 		// 小圓數量
-			gravity = ref(4), 				// 重力加速度
-			friction = ref(0,95), 			// 摩擦力
-			bounce = ref(0.3), 				// 反彈係數
-			smallCircles = ref([]), 		// 儲存小圓形資料
-			animationFrameId = ref(null);	// 儲存動畫 ID
+export default defineComponent({
+	name: 'DaVinciCdoeOld',
+	setup() {
+	const 	bigRadius = ref(250), 			// 大�??��?
+			smallRadius = ref(15), 			// 小�??��?
+			smallCircleCount = ref(0), 		// 小�??��?
+			gravity = ref(4), 				// ?��??�速度
+			friction = ref(0,95), 			// ?�擦??
+			bounce = ref(0.3), 				// ?��?係數
+			smallCircles = ref([]), 		// ?��?小�?形�???
+			animationFrameId = ref(null);	// ?��??�畫 ID
 
 	const	reset = () => {
 				resetGame()
@@ -20,7 +22,7 @@ const daVinciCdoeOld = () => {
 						updateCircles();
 					}
 					else {
-						console.log('連線出現問題~');
+						console.log('????�現?��?~');
 					};
 				})
 				.catch((err) => {
@@ -38,7 +40,7 @@ const daVinciCdoeOld = () => {
 					await waitTime(100);
 				};
 			},
-			// 初始化小圓形（分批從頂部生成）
+			// ?��??��??�形（�??��??�部?��?�?
 			createSmallBall = (i) => {
 				let angle = Math.random() * Math.PI + Math.PI,
 					x = bigRadius.value + Math.cos(angle) * (Math.random() - 0.5) * (bigRadius.value - smallRadius.value),
@@ -64,14 +66,14 @@ const daVinciCdoeOld = () => {
 					return distance < ball.radius * 2;
 				});
 			},
-			// 更新小圓形位置
+			// ?�新小�?形�?�?
 			updateCircles = () => {
 				smallCircles.value = smallCircles.value.map(circle => {
-					// 應用重力
+					// ?�用?��?
 					circle.vy += gravity.value;
 					let newY = circle.y + circle.vy;
 					let newX = circle.x;
-					// 大圓底部碰撞
+					// 大�?底部碰�?
 					const distance = Math.sqrt((newX - bigRadius.value) ** 2 + (newY - bigRadius.value) ** 2);
 
 					if(distance + smallRadius.value > bigRadius.value) {
@@ -79,7 +81,7 @@ const daVinciCdoeOld = () => {
 						circle.vy = -circle.vy * bounce.value;
 					};
 
-					// 其他小圓形碰撞
+					// ?��?小�?形碰??
 					let collisionDetected = false;
 					smallCircles.value.forEach(other => {
 						if(circle.id === other.id )
@@ -104,7 +106,7 @@ const daVinciCdoeOld = () => {
 								other.y -= pushY / 2;
 							};
 
-							// 確保仍在圓內
+							// 確�?仍在?�內
 							const newDistance = Math.sqrt((newX - bigRadius.value) ** 2 + (newY - bigRadius.value) ** 2);
 
 							if(newDistance + smallRadius.value > bigRadius.value) {
@@ -117,13 +119,13 @@ const daVinciCdoeOld = () => {
 						};
 					});
 
-					// 僅在無碰撞時更新位置
+					// ?�在?�碰?��??�新位置
 					if(!collisionDetected) {
 						circle.x = newX;
 						circle.y = newY;
 					}
 					else {
-						// 若碰撞，保留新位置供下一次迭代
+						// ?�碰?��?保�??��?置�?下�?次迭�?
 						circle.x = newX;
 						circle.y = newY;
 					};
@@ -132,7 +134,7 @@ const daVinciCdoeOld = () => {
 					return circle;
 				});
 
-				// 再次檢查所有圓形對，確保無重疊
+				// ?�次檢查?�?��?形�?，確保無?��?
 				for(let i = 0; i < smallCircles.value.length; i++) {
 					for(let j = i + 1; j < smallCircles.value.length; j++) {
 						const circle = smallCircles.value[i];
@@ -158,7 +160,7 @@ const daVinciCdoeOld = () => {
 								other.y -= pushY;
 							};
 
-							// 確保仍在圓內
+							// 確�?仍在?�內
 							const newDistance1 = Math.sqrt((circle.x - bigRadius.value) ** 2 + (circle.y - bigRadius.value) ** 2);
 
 							if(newDistance1 + smallRadius.value > bigRadius.value) {
@@ -189,7 +191,7 @@ const daVinciCdoeOld = () => {
 				for (let k = 0; k < 3; k++) {
 					resolveCollisions();
 				}
-				// 繼續動畫
+				// 繼�??�畫
 				if(smallCircles.value.length < smallCircleCount.value || smallCircles.value.some(circle => !circle.settled))
 					animationFrameId.value = requestAnimationFrame(updateCircles);
 				else
@@ -207,12 +209,12 @@ const daVinciCdoeOld = () => {
 						const minDistance = 2 * smallRadius.value;
 
 						if (distance < minDistance && distance > 0) {
-							// 推開方向
+							// ?��??��?
 							const overlap = minDistance - distance;
 							const nx = dx / distance;
 							const ny = dy / distance;
 
-							// 平分位移
+							// 平�?位移
 							const shiftX = (overlap / 2) * nx;
 							const shiftY = (overlap / 2) * ny;
 
@@ -221,7 +223,7 @@ const daVinciCdoeOld = () => {
 							c2.x += shiftX;
 							c2.y += shiftY;
 
-							// 可選：停掉碰撞時的速度（增加穩定度）
+							// ?�選：�??�碰?��??�速度（�??�穩定度�?
 							c1.vx *= 0.8;
 							c1.vy *= 0.8;
 							c2.vx *= 0.8;
@@ -230,7 +232,7 @@ const daVinciCdoeOld = () => {
 					}
 				}
 			},
-			// 處理點擊事件
+			// ?��?點�?事件
 			selectNumber = (id) => {
 				makeGuess(id);
 			},
@@ -244,7 +246,7 @@ const daVinciCdoeOld = () => {
 							alert(res.data.message);
 					}
 					else {
-						console.log('連線出現問題~');
+						console.log('????�現?��?~');
 					};
 				})
 				.catch((err) => {
@@ -266,8 +268,8 @@ const daVinciCdoeOld = () => {
 		smallCircles,
 		selectNumber
 	};
-};
+	}
+});
 
-export default daVinciCdoeOld;
 
 

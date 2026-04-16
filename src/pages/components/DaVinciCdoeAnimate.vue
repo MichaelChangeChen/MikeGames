@@ -28,13 +28,7 @@
 	</div>
 </template>
 
-<script setup>
-	import daVinciCdoeAnimate from '@/js/components/daVinciCdoeAnimate.js';
-	import { defineExpose } from 'vue';
-
-	const { open, check, message } = daVinciCdoeAnimate();
-	defineExpose({check})
-</script>
+<script src="@/js/components/daVinciCdoeAnimate.js"></script>
 
 <style lang="scss" scoped>
 	.da-vinci-cdoe-animate {

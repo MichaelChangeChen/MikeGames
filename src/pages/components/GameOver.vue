@@ -14,20 +14,7 @@
 	 </v-skeleton-loader>
 </template>
 
-<script setup>
-	import gameOver from '@/js/components/gameOver.js';
-	import { defineExpose } from 'vue';
-
-	const {
-		open,
-		check,
-		message,
-		loading,
-		scroeText,
-		goMainPage
-	} = gameOver();
-	defineExpose({check})
-</script>
+<script src="@/js/components/gameOver.js"></script>
 
 <style lang="scss" scoped>
 	.game-over {
