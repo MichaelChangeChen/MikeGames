@@ -1,4 +1,4 @@
-import { defineComponent, ref, toRef, watch } from 'vue';
+import { computed, defineComponent, onMounted, onUnmounted, ref, toRef, watch } from 'vue';
 
 export default defineComponent({
 	name: 'Loading',
@@ -13,7 +13,7 @@ export default defineComponent({
 		const 	smallRadius = ref(15),
 				smallCircleCount = ref(3),
 				smallCircles = ref([]),
-				baseY = 315,
+				viewportHeight = ref(window.innerHeight),
 				gravity = ref(1.5),
 				friction = ref(1.07),
 				bounce = 0.7,
@@ -24,10 +24,27 @@ export default defineComponent({
 				topBgc = ref('black'),
 				bootomBgc = ref('black');
 
-		let slopeAngle = -5 * Math.PI / 180;
+		const slopeDegrees = 4.7;
+		const slopeAngle = -slopeDegrees * Math.PI / 180;
+		
+		const loadingStyle = computed(() => ({
+			'--slope-top': `${viewportHeight.value * 0.4}px`,
+			'--slope-angle': `${slopeDegrees}deg`
+		}));
+		const resizeViewport = () => {
+			viewportHeight.value = window.innerHeight;
+			for (const circle of smallCircles.value) {
+				circle.settled = false;
+			}
+		};
+		onMounted(() => window.addEventListener('resize', resizeViewport));
+		onUnmounted(() => {
+			window.removeEventListener('resize', resizeViewport);
+			cancelAnimationFrame(animationFrameId.value);
+		});
 
 		const	slopeYAt = (x) => {
-					return baseY - Math.tan(slopeAngle) * x;
+					return viewportHeight.value * 0.4 - Math.tan(slopeAngle) * x;
 				},
 				initializeCircles = () => {
 					smallCircles.value = [];
@@ -153,6 +170,7 @@ export default defineComponent({
 		});
 
 		return {
+			loadingStyle,
 			smallRadius,
 			smallCircles,
 			checkOpenClass,
